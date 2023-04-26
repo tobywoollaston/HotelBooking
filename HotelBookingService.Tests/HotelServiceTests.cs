@@ -17,16 +17,12 @@ public class HotelServiceTests
             Id = hotelId,
             Name = hotelName
         };
-        var mockHotelRepository = new Mock<IHotelRepository>();
 
-        var service = new HotelService();
+        var mockHotelRepository = new Mock<IHotelRepository>();
+        var service = new HotelService(mockHotelRepository.Object);
+        
         service.AddHotel(hotelId, hotelName);
         
         mockHotelRepository.Verify(x => x.Save(It.Is<Hotel>(h => h.Equals(expectedHotel))));
     }
-}
-
-public interface IHotelRepository
-{
-    void Save(Hotel hotel);
 }

@@ -1,10 +1,25 @@
+using HotelBookingService.Tests;
+
 namespace CorporateHotelBooking;
 
 public class HotelService
 {
+    private readonly IHotelRepository _hotelRepository;
+
+    public HotelService(IHotelRepository hotelRepository)
+    {
+        _hotelRepository = hotelRepository;
+    }
+
     public void AddHotel(string hotelId, string hotelName)
     {
-        throw new NotImplementedException();
+        var hotel = new Hotel
+        {
+            Id = hotelId,
+            Name = hotelName 
+        };
+
+        _hotelRepository.Save(hotel);
     }
 
     public void SetRoom(string hotelId, int numberOfRooms, object roomType)

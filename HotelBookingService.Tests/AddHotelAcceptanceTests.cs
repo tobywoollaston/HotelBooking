@@ -3,45 +3,46 @@ using FluentAssertions;
 using hotel_booking_service;
 using Moq;
 
-namespace HotelBookingService.Tests;
-
-public class AddHotelAcceptanceTests
+namespace HotelBookingService.Tests
 {
-    [SetUp]
-    public void Setup()
+    public class AddHotelAcceptanceTests
     {
-    }
-
-    [Test]
-    public void GivenAHotelManager_CreateAHotel()
-    {
-        var mockDatabaseDriver = new Mock<IDatabaseDriver>();
-        var hotelService = new HotelService();
-        var hotelId = "1";
-        var hotelName = "The Dorchester";
-        var numberOfRooms = 5;
-        var doubleRoomType = RoomType.Double;
-        
-        hotelService.AddHotel(hotelId, hotelName);
-        hotelService.SetRoom(hotelId, numberOfRooms, doubleRoomType);
-        
-        var expectedHotel = new Hotel()
+        [SetUp]
+        public void Setup()
         {
-            Id = hotelId,
-            Name = hotelName,
-            Rooms = new List<HotelRoom>
+        }
+
+        [Test]
+        public void GivenAHotelManager_CreateAHotel()
+        {
+            var mockDatabaseDriver = new Mock<IDatabaseDriver>();
+            var hotelRepository = new HotelLocalRepository();
+            var hotelService = new HotelService(hotelRepository);
+            var hotelId = "1";
+            var hotelName = "The Dorchester";
+            var numberOfRooms = 5;
+            var doubleRoomType = RoomType.Double;
+
+            hotelService.AddHotel(hotelId, hotelName);
+            hotelService.SetRoom(hotelId, numberOfRooms, doubleRoomType);
+
+            var expectedHotel = new Hotel()
             {
-                new()
+                Id = hotelId,
+                Name = hotelName,
+                Rooms = new List<HotelRoom>
                 {
-                    NumberOfRooms = numberOfRooms,
-                    RoomType = doubleRoomType
+                    new()
+                    {
+                        NumberOfRooms = numberOfRooms,
+                        RoomType = doubleRoomType
+                    }
                 }
-            }
+            };
 
-        };
+            var actualHotel = hotelService.FindHotelBy(hotelId);
 
-        var actualHotel = hotelService.FindHotelBy(hotelId);
-
-        actualHotel.Should().BeEquivalentTo(expectedHotel);
+            actualHotel.Should().BeEquivalentTo(expectedHotel);
+        }
     }
 }
