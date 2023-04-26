@@ -15,7 +15,7 @@ namespace HotelBookingService.Tests
         public void GivenAHotelManager_CreateAHotel()
         {
             var mockDatabaseDriver = new Mock<IDatabaseDriver>();
-            var hotelRepository = new HotelLocalRepository();
+            var hotelRepository = new HotelLocalRepository(mockDatabaseDriver.Object);
             var hotelService = new HotelService(hotelRepository);
             var hotelId = "1";
             var hotelName = "The Dorchester";

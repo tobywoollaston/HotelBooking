@@ -8,17 +8,18 @@ public class HotelLocalRepositoryTests
     [Test]
     public void GivenValidHotel_SaveToLocalDatabase()
     {
-        var mockDatabase = new Mock<IDatabaseDriver>();
         var hotel = new Hotel()
         {
             Id = "ID",
             Name = "MyHotel1"
         };
 
-        var repo = new HotelLocalRepository();
+        var mockDatabase = new Mock<IDatabaseDriver>();
+        var repo = new HotelLocalRepository(mockDatabase.Object);
+        
         repo.Save(hotel);
 
-        string expectedHotelJsonString = "";
+        string expectedHotelJsonString = "{\"Id\": \"ID\", \"Name\": \"MyHotel1\" }";
         mockDatabase.Verify(x => x.Save(It.Is<string>(s => s.Equals(expectedHotelJsonString))));
     }
 }
