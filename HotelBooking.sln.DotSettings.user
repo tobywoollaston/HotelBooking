@@ -3,6 +3,7 @@
   &lt;TestAncestor&gt;
     &lt;TestId&gt;NUnit3x::39D322B4-84C9-49CB-B2FA-14FDB46BBD02::net6.0::HotelBookingService.Tests.AddHotelAcceptanceTests.GivenAHotelManager_CreateAHotel&lt;/TestId&gt;
     &lt;TestId&gt;NUnit3x::39D322B4-84C9-49CB-B2FA-14FDB46BBD02::net6.0::HotelBookingService.Tests.HotelServiceTests.GivenAHotelManager_CreateNewHotel&lt;/TestId&gt;
-    &lt;TestId&gt;NUnit3x::39D322B4-84C9-49CB-B2FA-14FDB46BBD02::net6.0::HotelBookingService.Tests.AddHotelAcceptanceTests&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::39D322B4-84C9-49CB-B2FA-14FDB46BBD02::net6.0::HotelBookingService.Tests.HotelServiceTests&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::39D322B4-84C9-49CB-B2FA-14FDB46BBD02::net6.0::HotelBookingService.Tests.HotelLocalRepositoryTests.GivenValidHotel_SaveToLocalDatabase&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

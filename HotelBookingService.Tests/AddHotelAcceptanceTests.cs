@@ -1,6 +1,5 @@
 using CorporateHotelBooking;
 using FluentAssertions;
-using hotel_booking_service;
 using Moq;
 
 namespace HotelBookingService.Tests

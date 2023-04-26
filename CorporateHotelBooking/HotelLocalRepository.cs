@@ -1,5 +1,6 @@
-using CorporateHotelBooking;
 using HotelBookingService.Tests;
+
+namespace CorporateHotelBooking;
 
 public class HotelLocalRepository : IHotelRepository
 {
