@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "hotel-booking-service.tests", "hotel-booking-service.tests\hotel-booking-service.tests.csproj", "{39D322B4-84C9-49CB-B2FA-14FDB46BBD02}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelBookingService.Tests", "HotelBookingService.Tests\HotelBookingService.Tests.csproj", "{39D322B4-84C9-49CB-B2FA-14FDB46BBD02}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CorporateHotelBooking", "CorporateHotelBooking\CorporateHotelBooking.csproj", "{6DC9005F-14A8-48D2-8D4E-EB7B6A62320B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -12,5 +14,9 @@ Global
 		{39D322B4-84C9-49CB-B2FA-14FDB46BBD02}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39D322B4-84C9-49CB-B2FA-14FDB46BBD02}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39D322B4-84C9-49CB-B2FA-14FDB46BBD02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DC9005F-14A8-48D2-8D4E-EB7B6A62320B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DC9005F-14A8-48D2-8D4E-EB7B6A62320B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DC9005F-14A8-48D2-8D4E-EB7B6A62320B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DC9005F-14A8-48D2-8D4E-EB7B6A62320B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
