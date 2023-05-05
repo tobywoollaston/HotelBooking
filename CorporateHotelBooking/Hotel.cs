@@ -2,11 +2,9 @@ namespace CorporateHotelBooking;
 
 public class Hotel
 {
-    private readonly IDatabaseDriver _localDatabase;
-
     public string Id { get; init; }
     public string Name { get; init; }
-    public List<HotelRoom> Rooms { get; set; } = new List<HotelRoom>();
+    public List<HotelRoom> Rooms { get; set; } = new();
 
     public override string ToString()
     {
@@ -15,7 +13,7 @@ public class Hotel
 
     public bool Equals(Hotel other)
     {
-        return this.Id == other.Id && this.Name == other.Name && this.Rooms == other.Rooms;
+        return Id == other.Id && Name == other.Name && Rooms.SequenceEqual(other.Rooms);
     }
     
     public override bool Equals(object? obj)

@@ -19,7 +19,7 @@ public class HotelLocalRepositoryTests
         
         repo.Save(hotel);
 
-        string expectedHotelJsonString = "{\"Id\": \"ID\", \"Name\": \"MyHotel1\" }";
+        string expectedHotelJsonString = "{\"Id\":\"ID\",\"Name\":\"MyHotel1\",\"Rooms\":[]}";
         mockDatabase.Verify(x => x.Save(It.Is<string>(s => s.Equals(expectedHotelJsonString))));
     }
 }

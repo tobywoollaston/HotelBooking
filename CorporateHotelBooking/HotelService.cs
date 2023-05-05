@@ -22,9 +22,9 @@ public class HotelService
         _hotelRepository.Save(hotel);
     }
 
-    public void SetRoom(string hotelId, int numberOfRooms, object roomType)
+    public void SetRoom(string hotelId, int numberOfRooms, RoomType roomType)
     {
-        throw new NotImplementedException();
+        
     }
 
     public Hotel FindHotelBy(string hotelId)

@@ -1,9 +1,4 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=34ca1009_002D5b21_002D4532_002D8839_002D6f99b1a466b7/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="GivenAHotelManager_CreateAHotel" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
-  &lt;TestAncestor&gt;
-    &lt;TestId&gt;NUnit3x::39D322B4-84C9-49CB-B2FA-14FDB46BBD02::net6.0::HotelBookingService.Tests.AddHotelAcceptanceTests.GivenAHotelManager_CreateAHotel&lt;/TestId&gt;
-    &lt;TestId&gt;NUnit3x::39D322B4-84C9-49CB-B2FA-14FDB46BBD02::net6.0::HotelBookingService.Tests.HotelServiceTests.GivenAHotelManager_CreateNewHotel&lt;/TestId&gt;
-    &lt;TestId&gt;NUnit3x::39D322B4-84C9-49CB-B2FA-14FDB46BBD02::net6.0::HotelBookingService.Tests.HotelServiceTests&lt;/TestId&gt;
-    &lt;TestId&gt;NUnit3x::39D322B4-84C9-49CB-B2FA-14FDB46BBD02::net6.0::HotelBookingService.Tests.HotelLocalRepositoryTests.GivenValidHotel_SaveToLocalDatabase&lt;/TestId&gt;
-  &lt;/TestAncestor&gt;
+  &lt;Project Location="/Users/tobywoollaston/Documents/Codurance/Learning/HotelBooking/HotelBookingService.Tests" Presentation="&amp;lt;HotelBookingService.Tests&amp;gt;" /&gt;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
