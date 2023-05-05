@@ -1,5 +1,5 @@
-using System.Linq.Expressions;
 using CorporateHotelBooking;
+using FluentAssertions;
 using Moq;
 
 namespace HotelBookingService.Tests;
@@ -65,6 +65,19 @@ public class HotelServiceTests
 
     [Test]
     public void GivenAHotelDoesNotExistWhenSettingARoom_ThrowNoHotelFoundException()
+    {
+        const string hotelId = "HOT123";
+        
+        var mockHotelRepository = new Mock<IHotelRepository>();
+        mockHotelRepository.Setup(x => x.GetById(It.IsAny<string>())).Returns((Hotel)null!);
+        var service = new HotelService(mockHotelRepository.Object);
+        
+        var exception = Assert.Throws<HotelNotFoundException>(() => service.SetRoom(hotelId, 5, RoomType.Double));
+        exception!.Message.Should().Contain(hotelId);
+    }
+
+    [Test]
+    public void GivenAHotelAlreadyRoom_OverrideRoomType()
     {
         
     }

@@ -1,5 +1,3 @@
-using HotelBookingService.Tests;
-
 namespace CorporateHotelBooking;
 
 public class HotelService
@@ -25,6 +23,10 @@ public class HotelService
     public void SetRoom(string hotelId, int roomNumber, RoomType roomType)
     {
         var hotel = _hotelRepository.GetById(hotelId);
+        if (hotel is null)
+        {
+            throw new HotelNotFoundException(hotelId);
+        }
         
         hotel.Rooms.Add(new HotelRoom()
         {

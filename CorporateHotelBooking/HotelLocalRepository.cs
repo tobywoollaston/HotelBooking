@@ -1,5 +1,4 @@
 using System.Text.Json;
-using HotelBookingService.Tests;
 
 namespace CorporateHotelBooking;
 
@@ -19,7 +18,7 @@ public class HotelLocalRepository : IHotelRepository
         _localDatabase.Save(hotelJsonString);
     }
 
-    public Hotel GetById(string hotelId)
+    public Hotel? GetById(string hotelId)
     {
         throw new NotImplementedException();
     }
