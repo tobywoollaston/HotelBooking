@@ -3,7 +3,7 @@ namespace CorporateHotelBooking;
 public class HotelRoom
 {
     public int RoomNumber { get; init; }
-    public RoomType RoomType { get; init; }
+    public RoomType RoomType { get; set; }
 
     private bool Equals(HotelRoom other)
     {

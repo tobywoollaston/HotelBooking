@@ -2,5 +2,6 @@ namespace CorporateHotelBooking;
 
 public enum RoomType
 {
-    Double
+    Double,
+    Single
 }

@@ -27,12 +27,22 @@ public class HotelService
         {
             throw new HotelNotFoundException(hotelId);
         }
-        
-        hotel.Rooms.Add(new HotelRoom()
+
+        var currentRoom = hotel.Rooms.SingleOrDefault(x => x.RoomNumber == roomNumber);
+
+        if (currentRoom is not null)
         {
-            RoomType = roomType,
-            RoomNumber = roomNumber
-        });
+            currentRoom.RoomType = roomType;
+        }
+        else
+        {
+            hotel.Rooms.Add(new HotelRoom()
+            {
+                RoomType = roomType,
+                RoomNumber = roomNumber
+            });
+        }
+        
         
         _hotelRepository.Save(hotel);
     }
