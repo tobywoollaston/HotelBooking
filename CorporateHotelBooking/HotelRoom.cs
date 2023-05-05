@@ -2,12 +2,12 @@ namespace CorporateHotelBooking;
 
 public class HotelRoom
 {
-    public int NumberOfRooms { get; init; }
+    public int RoomNumber { get; init; }
     public RoomType RoomType { get; init; }
 
     private bool Equals(HotelRoom other)
     {
-        return NumberOfRooms == other.NumberOfRooms && RoomType == other.RoomType;
+        return RoomNumber == other.RoomNumber && RoomType == other.RoomType;
     }
 
     public override bool Equals(object? obj)
@@ -20,6 +20,6 @@ public class HotelRoom
 
     public override int GetHashCode()
     {
-        return HashCode.Combine(NumberOfRooms, (int)RoomType);
+        return HashCode.Combine(RoomNumber, (int)RoomType);
     }
 }

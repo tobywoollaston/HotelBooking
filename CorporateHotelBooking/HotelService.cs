@@ -22,9 +22,17 @@ public class HotelService
         _hotelRepository.Save(hotel);
     }
 
-    public void SetRoom(string hotelId, int numberOfRooms, RoomType roomType)
+    public void SetRoom(string hotelId, int roomNumber, RoomType roomType)
     {
+        var hotel = _hotelRepository.GetById(hotelId);
         
+        hotel.Rooms.Add(new HotelRoom()
+        {
+            RoomType = roomType,
+            RoomNumber = roomNumber
+        });
+        
+        _hotelRepository.Save(hotel);
     }
 
     public Hotel FindHotelBy(string hotelId)

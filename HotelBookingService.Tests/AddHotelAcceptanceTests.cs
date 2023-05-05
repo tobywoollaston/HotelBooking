@@ -33,7 +33,7 @@ namespace HotelBookingService.Tests
                 {
                     new()
                     {
-                        NumberOfRooms = numberOfRooms,
+                        RoomNumber = numberOfRooms,
                         RoomType = doubleRoomType
                     }
                 }

@@ -18,4 +18,9 @@ public class HotelLocalRepository : IHotelRepository
         
         _localDatabase.Save(hotelJsonString);
     }
+
+    public Hotel GetById(string hotelId)
+    {
+        throw new NotImplementedException();
+    }
 }

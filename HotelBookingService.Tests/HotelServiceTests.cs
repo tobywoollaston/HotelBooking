@@ -41,18 +41,31 @@ public class HotelServiceTests
             {
                 new()
                 {
-                    NumberOfRooms = 5,
+                    RoomNumber = 5,
                     RoomType = RoomType.Double
                 }
             }
         };
         
         var mockHotelRepository = new Mock<IHotelRepository>();
+        var returnedHotel = new Hotel()
+        {
+            Id = hotelId,
+            Name = hotelName
+        };
+        
+        mockHotelRepository.Setup(x => x.GetById(It.IsAny<string>())).Returns(returnedHotel);
         var service = new HotelService(mockHotelRepository.Object);
         
         service.SetRoom(hotelId, 5, RoomType.Double);
         
         mockHotelRepository.Verify(x =>
             x.Save(It.Is<Hotel>(h => h.Equals(expectedHotel))));
+    }
+
+    [Test]
+    public void GivenAHotelDoesNotExistWhenSettingARoom_ThrowNoHotelFoundException()
+    {
+        
     }
 }
