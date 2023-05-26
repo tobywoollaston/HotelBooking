@@ -2,5 +2,6 @@ namespace CorporateHotelBooking;
 
 public interface IDatabaseDriver
 {
-    public void Save(string json);
+    void Save(string json);
+    Hotel Get(string hotelId);
 }

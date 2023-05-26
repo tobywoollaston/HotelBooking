@@ -22,4 +22,17 @@ public class HotelLocalRepositoryTests
         string expectedHotelJsonString = "{\"Id\":\"ID\",\"Name\":\"MyHotel1\",\"Rooms\":[]}";
         mockDatabase.Verify(x => x.Save(It.Is<string>(s => s.Equals(expectedHotelJsonString))));
     }
+
+    [Test]
+    public void GivenAValidId_ReturnHotel()
+    {
+        var hotelId = "hotelId";
+
+        var mockDatabase = new Mock<IDatabaseDriver>();
+        var hotelRepository = new HotelLocalRepository(mockDatabase.Object);
+
+        hotelRepository.GetById(hotelId);
+
+        mockDatabase.Verify(x => x.Get(hotelId));
+    }
 }

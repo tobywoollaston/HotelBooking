@@ -20,6 +20,6 @@ public class HotelLocalRepository : IHotelRepository
 
     public Hotel? GetById(string hotelId)
     {
-        throw new NotImplementedException();
+        return _localDatabase.Get(hotelId);
     }
 }
