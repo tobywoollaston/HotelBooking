@@ -1,4 +1,5 @@
 using CorporateHotelBooking;
+using FluentAssertions;
 using Moq;
 
 namespace HotelBookingService.Tests;
@@ -27,12 +28,42 @@ public class HotelLocalRepositoryTests
     public void GivenAValidId_ReturnHotel()
     {
         var hotelId = "hotelId";
-
         var mockDatabase = new Mock<IDatabaseDriver>();
+        string hotelString = $"{{\"Id\":\"{hotelId}\",\"Name\":\"MyHotel1\",\"Rooms\":[]}}";
+        mockDatabase.Setup(x => x.Get(It.IsAny<string>())).Returns(hotelString);
         var hotelRepository = new HotelLocalRepository(mockDatabase.Object);
 
-        hotelRepository.GetById(hotelId);
+        var hotel = hotelRepository.GetById(hotelId);
 
         mockDatabase.Verify(x => x.Get(hotelId));
+        hotel.Should().BeEquivalentTo(new Hotel()
+        {
+            Id = hotelId,
+            Name = "MyHotel1"
+        });
+    }
+
+    [Test]
+    public void GivenHotelNotFound_ReturnNull()
+    {
+        var mockDatabase = new Mock<IDatabaseDriver>();
+        mockDatabase.Setup(x => x.Get(It.IsAny<string>())).Returns((string)null!);
+        var hotelRepository = new HotelLocalRepository(mockDatabase.Object);
+
+        var hotel = hotelRepository.GetById("hotelId");
+
+        hotel.Should().Be(null);
+    }
+    
+    [Test]
+    public void GivenInvalidJson_ReturnNull()
+    {
+        var mockDatabase = new Mock<IDatabaseDriver>();
+        mockDatabase.Setup(x => x.Get(It.IsAny<string>())).Returns("");
+        var hotelRepository = new HotelLocalRepository(mockDatabase.Object);
+
+        var hotel = hotelRepository.GetById("hotelId");
+
+        hotel.Should().Be(null);
     }
 }

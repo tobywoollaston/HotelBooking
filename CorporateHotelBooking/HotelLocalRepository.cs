@@ -20,6 +20,15 @@ public class HotelLocalRepository : IHotelRepository
 
     public Hotel? GetById(string hotelId)
     {
-        return _localDatabase.Get(hotelId);
+        var hotelJson = _localDatabase.Get(hotelId);
+        try
+        {
+            var hotel = JsonSerializer.Deserialize<Hotel>(hotelJson);
+            return hotel;
+        }
+        catch
+        {
+            return null;
+        }
     }
 }
