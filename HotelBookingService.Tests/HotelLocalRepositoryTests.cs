@@ -6,6 +6,16 @@ namespace HotelBookingService.Tests;
 
 public class HotelLocalRepositoryTests
 {
+    private Mock<IDatabaseDriver> _mockDatabase = null!;
+    private HotelLocalRepository _hotelLocalRepository = null!;
+
+    [SetUp]
+    public void SetUp()
+    {
+        _mockDatabase = new Mock<IDatabaseDriver>();
+        _hotelLocalRepository = new HotelLocalRepository(_mockDatabase.Object);
+    }
+    
     [Test]
     public void GivenValidHotel_SaveToLocalDatabase()
     {
@@ -15,27 +25,22 @@ public class HotelLocalRepositoryTests
             Name = "MyHotel1"
         };
 
-        var mockDatabase = new Mock<IDatabaseDriver>();
-        var repo = new HotelLocalRepository(mockDatabase.Object);
-        
-        repo.Save(hotel);
+        _hotelLocalRepository.Save(hotel);
 
         string expectedHotelJsonString = "{\"Id\":\"ID\",\"Name\":\"MyHotel1\",\"Rooms\":[]}";
-        mockDatabase.Verify(x => x.Save(It.Is<string>(s => s.Equals(expectedHotelJsonString))));
+        _mockDatabase.Verify(x => x.Save(It.Is<string>(s => s.Equals(expectedHotelJsonString))));
     }
 
     [Test]
     public void GivenAValidId_ReturnHotel()
     {
         var hotelId = "hotelId";
-        var mockDatabase = new Mock<IDatabaseDriver>();
         string hotelString = $"{{\"Id\":\"{hotelId}\",\"Name\":\"MyHotel1\",\"Rooms\":[]}}";
-        mockDatabase.Setup(x => x.Get(It.IsAny<string>())).Returns(hotelString);
-        var hotelRepository = new HotelLocalRepository(mockDatabase.Object);
+        _mockDatabase.Setup(x => x.Get(It.IsAny<string>())).Returns(hotelString);
 
-        var hotel = hotelRepository.GetById(hotelId);
+        var hotel = _hotelLocalRepository.GetById(hotelId);
 
-        mockDatabase.Verify(x => x.Get(hotelId));
+        _mockDatabase.Verify(x => x.Get(hotelId));
         hotel.Should().BeEquivalentTo(new Hotel()
         {
             Id = hotelId,
@@ -46,23 +51,19 @@ public class HotelLocalRepositoryTests
     [Test]
     public void GivenHotelNotFound_ReturnNull()
     {
-        var mockDatabase = new Mock<IDatabaseDriver>();
-        mockDatabase.Setup(x => x.Get(It.IsAny<string>())).Returns((string)null!);
-        var hotelRepository = new HotelLocalRepository(mockDatabase.Object);
+        _mockDatabase.Setup(x => x.Get(It.IsAny<string>())).Returns((string)null!);
 
-        var hotel = hotelRepository.GetById("hotelId");
+        var hotel = _hotelLocalRepository.GetById("hotelId");
 
         hotel.Should().Be(null);
     }
-    
+
     [Test]
     public void GivenInvalidJson_ReturnNull()
     {
-        var mockDatabase = new Mock<IDatabaseDriver>();
-        mockDatabase.Setup(x => x.Get(It.IsAny<string>())).Returns("");
-        var hotelRepository = new HotelLocalRepository(mockDatabase.Object);
+        _mockDatabase.Setup(x => x.Get(It.IsAny<string>())).Returns("");
 
-        var hotel = hotelRepository.GetById("hotelId");
+        var hotel = _hotelLocalRepository.GetById("hotelId");
 
         hotel.Should().Be(null);
     }
