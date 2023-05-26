@@ -1,3 +1,5 @@
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using CorporateHotelBooking;
 using FluentAssertions;
 using Moq;
@@ -6,6 +8,11 @@ namespace HotelBookingService.Tests
 {
     public class AddHotelAcceptanceTests
     {
+        private const string HotelId = "1";
+        private const string HotelName = "The Dorchester";
+        private const int RoomNumber = 5;
+        private const RoomType DoubleRoomType = RoomType.Double;
+
         [SetUp]
         public void Setup()
         {
@@ -15,34 +22,36 @@ namespace HotelBookingService.Tests
         public void GivenAHotelManager_CreateAHotel()
         {
             var mockDatabaseDriver = new Mock<IDatabaseDriver>();
-            
-            
-            
+            var hotelDatabaseDriverInstance = new Hotel()
+            {
+                Id = HotelId,
+                Name = HotelName,
+            };
+
+            mockDatabaseDriver.Setup(x => x.Get(It.IsAny<string>()))
+                .Returns(JsonSerializer.Serialize(hotelDatabaseDriverInstance));
+
             var hotelRepository = new HotelLocalRepository(mockDatabaseDriver.Object);
             var hotelService = new HotelService(hotelRepository);
-            var hotelId = "1";
-            var hotelName = "The Dorchester";
-            var numberOfRooms = 5;
-            var doubleRoomType = RoomType.Double;
 
-            hotelService.AddHotel(hotelId, hotelName);
-            hotelService.SetRoom(hotelId, numberOfRooms, doubleRoomType);
+            hotelService.AddHotel(HotelId, HotelName);
+            hotelService.SetRoom(HotelId, RoomNumber, DoubleRoomType);
 
             var expectedHotel = new Hotel()
             {
-                Id = hotelId,
-                Name = hotelName,
+                Id = HotelId,
+                Name = HotelName,
                 Rooms = new List<HotelRoom>
                 {
                     new()
                     {
-                        RoomNumber = numberOfRooms,
-                        RoomType = doubleRoomType
+                        RoomNumber = RoomNumber,
+                        RoomType = DoubleRoomType
                     }
                 }
             };
 
-            var actualHotel = hotelService.FindHotelBy(hotelId);
+            var actualHotel = hotelService.FindHotelBy(HotelId);
 
             actualHotel.Should().BeEquivalentTo(expectedHotel);
         }

@@ -49,6 +49,8 @@ public class HotelService
 
     public Hotel FindHotelBy(string hotelId)
     {
-        throw new NotImplementedException();
+        _hotelRepository.GetById(hotelId);
+
+        return null;
     }
 }

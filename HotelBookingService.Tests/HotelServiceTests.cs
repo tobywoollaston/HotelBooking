@@ -119,4 +119,20 @@ public class HotelServiceTests
         mockHotelRepository.Verify(x =>
             x.Save(It.Is<Hotel>(h => h.Equals(expectedHotel))));
     }
+
+
+    [Test]
+    public void GivenAHotelIsSuccessfullyFound_ReturnHotel()
+    {
+        var mockHotelRepository = new Mock<IHotelRepository>();
+        var hotelService = new HotelService(mockHotelRepository.Object);
+
+        var hotelId = "hotelId";
+        hotelService.FindHotelBy(hotelId);
+
+        mockHotelRepository.Verify(x => x.GetById(hotelId));
+    }
+    
+    
+    //next to throw not found exception and return hotel
 }
